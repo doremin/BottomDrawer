@@ -16,6 +16,9 @@
 		17AA50FE2B8E5BA5000B9983 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA50FD2B8E5BA5000B9983 /* UIView+Extensions.swift */; };
 		17AA51002B8E5BBC000B9983 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA50FF2B8E5BBC000B9983 /* BaseViewController.swift */; };
 		17AA51022B8E639A000B9983 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA51012B8E639A000B9983 /* SettingsViewController.swift */; };
+		17AA51042B8FB87A000B9983 /* ProfileImageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA51032B8FB87A000B9983 /* ProfileImageAnimation.swift */; };
+		17AA51062B8FD595000B9983 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA51052B8FD595000B9983 /* ProfileImageView.swift */; };
+		17AA51082B8FD929000B9983 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA51072B8FD929000B9983 /* ProfileDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		17AA50FD2B8E5BA5000B9983 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		17AA50FF2B8E5BBC000B9983 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		17AA51012B8E639A000B9983 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		17AA51032B8FB87A000B9983 /* ProfileImageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageAnimation.swift; sourceTree = "<group>"; };
+		17AA51052B8FD595000B9983 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		17AA51072B8FD929000B9983 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,9 @@
 				17AA50EA2B8E56CE000B9983 /* SceneDelegate.swift */,
 				17AA50F92B8E5833000B9983 /* MainViewController.swift */,
 				17AA50FB2B8E5AF7000B9983 /* ProfileViewController.swift */,
+				17AA51072B8FD929000B9983 /* ProfileDetailViewController.swift */,
+				17AA51032B8FB87A000B9983 /* ProfileImageAnimation.swift */,
+				17AA51052B8FD595000B9983 /* ProfileImageView.swift */,
 				17AA51012B8E639A000B9983 /* SettingsViewController.swift */,
 				17AA50EE2B8E56CF000B9983 /* Assets.xcassets */,
 				17AA50F02B8E56CF000B9983 /* LaunchScreen.storyboard */,
@@ -148,9 +157,12 @@
 			files = (
 				17AA50FA2B8E5833000B9983 /* MainViewController.swift in Sources */,
 				17AA50E92B8E56CE000B9983 /* AppDelegate.swift in Sources */,
+				17AA51042B8FB87A000B9983 /* ProfileImageAnimation.swift in Sources */,
 				17AA51022B8E639A000B9983 /* SettingsViewController.swift in Sources */,
 				17AA50FE2B8E5BA5000B9983 /* UIView+Extensions.swift in Sources */,
+				17AA51082B8FD929000B9983 /* ProfileDetailViewController.swift in Sources */,
 				17AA50FC2B8E5AF7000B9983 /* ProfileViewController.swift in Sources */,
+				17AA51062B8FD595000B9983 /* ProfileImageView.swift in Sources */,
 				17AA50EB2B8E56CE000B9983 /* SceneDelegate.swift in Sources */,
 				17AA51002B8E5BBC000B9983 /* BaseViewController.swift in Sources */,
 			);

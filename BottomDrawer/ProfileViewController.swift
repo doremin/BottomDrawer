@@ -23,15 +23,18 @@ final class ProfileViewController: BaseViewController {
     return label
   }()
   
-  let profileImageView: UIImageView = {
-    let imageView = UIImageView()
+  let profileImageView: ProfileImageView = {
+    let imageView = ProfileImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.layer.cornerRadius = 24
     imageView.clipsToBounds = true
     imageView.contentMode = .scaleAspectFill
     imageView.image = UIImage(named: "cat")
+    imageView.isUserInteractionEnabled = true
     return imageView
   }()
+  
+  lazy var presentAnimation = ProfileImageAnimation(origin: view.convert(profileImageView.frame, to: nil), imageView: profileImageView)
   
   weak var delegate: ProfileViewControllerDelegate?
   
@@ -42,6 +45,13 @@ final class ProfileViewController: BaseViewController {
     
     view.backgroundColor = .white
     setUpGesture()
+    
+    profileImageView.onTapped = { [weak self] in
+      let detailViewController = ProfileDetailViewController()
+      detailViewController.modalPresentationStyle = .custom
+      detailViewController.transitioningDelegate = self
+      self?.present(detailViewController, animated: true)
+    }
   }
   
   private func setUpGesture() {
@@ -80,6 +90,16 @@ final class ProfileViewController: BaseViewController {
       profileImageView.heightAnchor.constraint(equalToConstant: 110),
       profileImageView.widthAnchor.constraint(equalToConstant: 110)
     ])
+  }
+}
+
+extension ProfileViewController: UIViewControllerTransitioningDelegate {
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return presentAnimation
+  }
+  
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return presentAnimation
   }
 }
 
