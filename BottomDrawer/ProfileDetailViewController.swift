@@ -11,16 +11,19 @@ final class ProfileDetailViewController: BaseViewController {
   
   let profileImageView = ProfileImageView()
   
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    dismiss(animated: true)
-  }
-  
   override func addSubviews() {
     view.add {
       profileImageView
     }
     
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
     view.backgroundColor = .white
+    view.addGestureRecognizer(gesture)
+    view.isUserInteractionEnabled = true
+  }
+  
+  @objc func didTapView(_ sender: UITapGestureRecognizer) {
+    self.dismiss(animated: true)
   }
   
   override func setupConstraints() {

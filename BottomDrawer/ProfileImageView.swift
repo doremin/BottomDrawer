@@ -30,6 +30,12 @@ final class ProfileImageView: UIImageView {
     addGestureRecognizer(gesture)
     translatesAutoresizingMaskIntoConstraints = false
     contentMode = .scaleAspectFill
+    
+    translatesAutoresizingMaskIntoConstraints = false
+    layer.cornerRadius = 24
+    clipsToBounds = true
+    contentMode = .scaleAspectFill
+    isUserInteractionEnabled = true
   }
   
   required init?(coder: NSCoder) {

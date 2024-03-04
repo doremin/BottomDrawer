@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileImageAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+final class ProfileImagePresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
   
   let origin: CGRect
   let imageView: UIImageView
@@ -19,7 +19,7 @@ final class ProfileImageAnimation: NSObject, UIViewControllerAnimatedTransitioni
   }
   
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-    return 0.5
+    return 0.25
   }
   
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -27,6 +27,14 @@ final class ProfileImageAnimation: NSObject, UIViewControllerAnimatedTransitioni
       let to = transitionContext.viewController(forKey: .to) as? ProfileDetailViewController
     else {
       return
+    }
+    
+    imageView.isHidden = true
+    
+    CATransaction.begin()
+    CATransaction.setCompletionBlock {
+      self.imageView.isHidden = false
+      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
     
     to.profileImageView.image = imageView.image
@@ -51,14 +59,19 @@ final class ProfileImageAnimation: NSObject, UIViewControllerAnimatedTransitioni
       width: to.view.frame.width,
       height: 300)
     
+    let opacityAnimation = CABasicAnimation(keyPath: "backgroundColor")
+    opacityAnimation.fromValue = UIColor.clear.cgColor
+    opacityAnimation.toValue = UIColor.white.cgColor
+    opacityAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+    
     let group = CAAnimationGroup()
-    group.duration = 1
     group.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
     group.animations = [positionAnimation, sizeAnimation]
     
     to.profileImageView.layer.add(group, forKey: "animations")
+    to.view.layer.add(opacityAnimation, forKey: "opacity")
     
-    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+    CATransaction.commit()
   }
   
   

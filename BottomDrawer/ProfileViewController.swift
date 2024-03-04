@@ -25,16 +25,18 @@ final class ProfileViewController: BaseViewController {
   
   let profileImageView: ProfileImageView = {
     let imageView = ProfileImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.layer.cornerRadius = 24
-    imageView.clipsToBounds = true
-    imageView.contentMode = .scaleAspectFill
     imageView.image = UIImage(named: "cat")
-    imageView.isUserInteractionEnabled = true
     return imageView
   }()
   
-  lazy var presentAnimation = ProfileImageAnimation(origin: view.convert(profileImageView.frame, to: nil), imageView: profileImageView)
+  lazy var presentAnimation = ProfileImagePresentAnimation(
+    origin: view.convert(profileImageView.frame, to: nil),
+    imageView: profileImageView)
+  
+  lazy var dismissAnimation = ProfileImageDismissAnimation(
+    origin: view.convert(profileImageView.frame, to: nil),
+    imageView: profileImageView
+  )
   
   weak var delegate: ProfileViewControllerDelegate?
   
@@ -99,7 +101,7 @@ extension ProfileViewController: UIViewControllerTransitioningDelegate {
   }
   
   func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    return presentAnimation
+    return dismissAnimation
   }
 }
 
