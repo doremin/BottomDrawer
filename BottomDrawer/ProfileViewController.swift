@@ -40,6 +40,8 @@ final class ProfileViewController: BaseViewController {
   
   weak var delegate: ProfileViewControllerDelegate?
   
+  let interacttionController = UIPercentDrivenInteractiveTransition()
+  
   var isOpened = false
   
   override func viewDidLoad() {
@@ -52,6 +54,7 @@ final class ProfileViewController: BaseViewController {
       let detailViewController = ProfileDetailViewController()
       detailViewController.modalPresentationStyle = .custom
       detailViewController.transitioningDelegate = self
+      detailViewController.interactionController = self?.interacttionController
       self?.present(detailViewController, animated: true)
     }
   }
@@ -96,12 +99,17 @@ final class ProfileViewController: BaseViewController {
 }
 
 extension ProfileViewController: UIViewControllerTransitioningDelegate {
+  
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return presentAnimation
   }
   
   func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return dismissAnimation
+  }
+  
+  func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    interacttionController
   }
 }
 

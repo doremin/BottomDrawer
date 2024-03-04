@@ -30,40 +30,23 @@ final class ProfileImageDismissAnimation: NSObject, UIViewControllerAnimatedTran
     
     imageView.isHidden = true
     
-    CATransaction.begin()
-    CATransaction.setCompletionBlock {
+    let widthScaleFactor = origin.width / from.profileImageView.frame.width
+    let heightScaleFactor = origin.height / from.profileImageView.frame.height
+    let translateX = origin.midX - from.profileImageView.frame.midX
+    let translateY = origin.midY - from.profileImageView.frame.midY
+    
+    // Translate * Rotate * Scale * x
+    let modelMatrix = CGAffineTransform.identity
+      .scaledBy(x: widthScaleFactor, y: heightScaleFactor)
+      .translatedBy(x: translateX, y: translateY)
+
+    
+    UIView.animate(withDuration: transitionDuration(using: transitionContext)) {
+      from.profileImageView.transform = modelMatrix
+      from.view.backgroundColor = UIColor.clear
+    } completion: { _ in
       self.imageView.isHidden = false
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
-    
-    let positionAnimation = CABasicAnimation(keyPath: "position")
-    positionAnimation.fromValue = [from.profileImageView.frame.midX, from.profileImageView.frame.midY]
-    positionAnimation.toValue = [origin.midX, origin.midY]
-    
-    let sizeAnimation = CABasicAnimation(keyPath: "bounds")
-    sizeAnimation.fromValue = CGRect(
-      x: from.profileImageView.bounds.midX,
-      y: from.profileImageView.bounds.midY,
-      width: from.profileImageView.frame.width,
-      height: from.profileImageView.frame.height)
-    
-    sizeAnimation.toValue = CGRect(
-      x: from.profileImageView.bounds.midX,
-      y: from.profileImageView.bounds.midY,
-      width: origin.width,
-      height: origin.height)
-    
-    let opacityAnimation = CABasicAnimation(keyPath: "backgroundColor")
-    opacityAnimation.toValue = UIColor.clear.cgColor
-    opacityAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-    
-    let group = CAAnimationGroup()
-    group.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-    group.animations = [positionAnimation, sizeAnimation]
-    
-    from.profileImageView.layer.add(group, forKey: "animations")
-    from.view.layer.add(opacityAnimation, forKey: "opacity")
-    
-    CATransaction.commit()
   }
 }
