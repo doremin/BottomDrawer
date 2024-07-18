@@ -131,4 +131,6 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+## CardsHolder https://github.com/Kharauzov/CardsHolder
+
 # End of https://www.toptal.com/developers/gitignore/api/xcode,macos,swift
